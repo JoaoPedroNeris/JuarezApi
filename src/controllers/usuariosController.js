@@ -1,8 +1,9 @@
 import { prisma } from "../utils/index.js";
-
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 async function buscar() {
     try {
-        return await prisma.niveis.findMany();
+        return await prisma.usuarios.findMany();
     } catch (error) {
         return {
             tipo: 'error',
@@ -13,8 +14,9 @@ async function buscar() {
 
 async function criar(dados) {
     try {
-        const request = await prisma.niveis.create({
-            data: dados
+        const senhaCripto = await bcrypt.hash(dados.senha, 10);
+        const request = await prisma.usuarios.create({
+            data: {...dados, senha: senhaCripto}
         })
 
         if (request) {
@@ -34,9 +36,10 @@ async function criar(dados) {
 }
 async function editar(dados, id) {
     try {
-        const request = await prisma.niveis.update(
+        const senhaCripto = await bcrypt.hash(dados.senha, 10);
+        const request = await prisma.usuarios.update(
             {
-                data: dados,
+                data:  {...dados, senha: senhaCripto},
                 where: {
                     id: Number(id)
                 }
@@ -56,7 +59,7 @@ async function editar(dados, id) {
 }
 async function deletar(id) {
     try {
-        const request = await prisma.niveis.delete(
+        const request = await prisma.usuarios.delete(
             {
                 where: {
                     id: Number(id)
@@ -75,9 +78,44 @@ async function deletar(id) {
         }
     }
 }
+async function login(dados) {
+    try {
+        const usuario = await prisma.usuarios.findFirst({
+            where: {
+                email:dados.email
+            }
+        });
+        if(!usuario){
+            return{
+                tipo: "warning",
+                mensagem: "Email ou senha envalidos"
+            }
+        }
+        const senhaCorreta = await bcrypt.compare(dados.senha, usuario.senha);
+        if(!senhaCorreta){
+            return {
+                tipo:'warning',
+                mensagem: "Email ou senha invalidos"
+            }
+        }
+
+        const token = await jwt.sign(usuario, process.env.SEGREDO, {expiresIn: '1h'});
+
+        return{
+            usuario,
+            token
+        }
+    }    catch (error) {
+        return {
+            tipo: 'error',
+            mensagem: error.message
+        }
+    }
+}
 export {
     buscar,
     criar,
     editar,
-    deletar
+    deletar,
+    login
 } 

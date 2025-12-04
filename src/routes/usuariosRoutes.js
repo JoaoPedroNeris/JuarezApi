@@ -1,5 +1,5 @@
 import express from "express"
-import { buscar, criar, deletar, editar } from "../controllers/niveisController.js";
+import { buscar, criar, deletar, editar } from "../controllers/usuariosController.js";
 
 const router = express.Router();
 
