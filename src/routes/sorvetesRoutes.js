@@ -1,35 +1,27 @@
 import express from "express"
-import { buscar, criar, deletar, editar } from "../controllers/usuariosController.js";
+import { buscar, criar, deletar, editar } from "../controllers/sorvetesController.js";
 
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-     // #swagger.description = "Busca todos os usuários"
+    // #swagger.description = "Busca todos os sorvetes"
     /* #swagger.responses[200] = {
-            description: 'Retorna lista de usuários',
+            description: 'Retorna lista de sorvetes',
             schema: [{
                 id: 1,
                 nome: "texto",
-                email: "texto",
-                senha: "texto",
-                nivel_id: 1,
-                niveis: {
-                nome: "texto"
-                },
+                status: "texto"
             }]
     } */
     res.json(await buscar());
 });
 
-router.post("/", async (req, res) => {
-    // #swagger.description = "Cria um usuário"
+router.post("/", async (req, res) => {// #swagger.description = "Cria um sorvetes"
     /* #swagger.parameters['obj'] = {
             in: 'body',
             schema: {
                 $nome: "texto",
-                $email: "texto",
-                $senha: "texto",
-                $nivel__id: 1,
+                $status: "texto"
             }
     } */
     /* #swagger.responses[200] = {
@@ -41,15 +33,12 @@ router.post("/", async (req, res) => {
     } */
     res.json(await criar(req.body));
 })
-router.put("/:id", async (req, res) => {
-    // #swagger.description = "Edita um usuário"
+router.put("/:id", async (req, res) => {// #swagger.description = "Edita um nível"
     /* #swagger.parameters['obj'] = {
             in: 'body',
             schema: {
                 $nome: "texto",
-                $email: "texto",
-                $senha: "texto",
-                $nivel_id: 1,
+                $status:  "texto"
             }
     } */
     /* #swagger.responses[200] = {
@@ -63,7 +52,7 @@ router.put("/:id", async (req, res) => {
 });
 
 router.delete("/:id", async (req, res) => {
-    // #swagger.description = "Deleta um usuário"
+    // #swagger.description = "Deleta um nível"
     /* #swagger.responses[200] = {
             description: 'Resposta',
             schema: {

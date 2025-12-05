@@ -3,7 +3,15 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 async function buscar() {
     try {
-        return await prisma.usuarios.findMany();
+        return await prisma.usuarios.findMany({
+            include: {
+                niveis: {
+                    omit: {
+                        id: true
+                    }
+                }
+            }
+        });
     } catch (error) {
         return {
             tipo: 'error',

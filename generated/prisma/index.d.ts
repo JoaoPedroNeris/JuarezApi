@@ -23,6 +23,11 @@ export type niveis = $Result.DefaultSelection<Prisma.$niveisPayload>
  * 
  */
 export type usuarios = $Result.DefaultSelection<Prisma.$usuariosPayload>
+/**
+ * Model sorvetes
+ * 
+ */
+export type sorvetes = $Result.DefaultSelection<Prisma.$sorvetesPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -161,6 +166,16 @@ export class PrismaClient<
     * ```
     */
   get usuarios(): Prisma.usuariosDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.sorvetes`: Exposes CRUD operations for the **sorvetes** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Sorvetes
+    * const sorvetes = await prisma.sorvetes.findMany()
+    * ```
+    */
+  get sorvetes(): Prisma.sorvetesDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -603,7 +618,8 @@ export namespace Prisma {
 
   export const ModelName: {
     niveis: 'niveis',
-    usuarios: 'usuarios'
+    usuarios: 'usuarios',
+    sorvetes: 'sorvetes'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -622,7 +638,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "niveis" | "usuarios"
+      modelProps: "niveis" | "usuarios" | "sorvetes"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -774,6 +790,80 @@ export namespace Prisma {
           }
         }
       }
+      sorvetes: {
+        payload: Prisma.$sorvetesPayload<ExtArgs>
+        fields: Prisma.sorvetesFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.sorvetesFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sorvetesPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.sorvetesFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sorvetesPayload>
+          }
+          findFirst: {
+            args: Prisma.sorvetesFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sorvetesPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.sorvetesFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sorvetesPayload>
+          }
+          findMany: {
+            args: Prisma.sorvetesFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sorvetesPayload>[]
+          }
+          create: {
+            args: Prisma.sorvetesCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sorvetesPayload>
+          }
+          createMany: {
+            args: Prisma.sorvetesCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.sorvetesCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sorvetesPayload>[]
+          }
+          delete: {
+            args: Prisma.sorvetesDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sorvetesPayload>
+          }
+          update: {
+            args: Prisma.sorvetesUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sorvetesPayload>
+          }
+          deleteMany: {
+            args: Prisma.sorvetesDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.sorvetesUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.sorvetesUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sorvetesPayload>[]
+          }
+          upsert: {
+            args: Prisma.sorvetesUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$sorvetesPayload>
+          }
+          aggregate: {
+            args: Prisma.SorvetesAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSorvetes>
+          }
+          groupBy: {
+            args: Prisma.sorvetesGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SorvetesGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.sorvetesCountArgs<ExtArgs>
+            result: $Utils.Optional<SorvetesCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -872,6 +962,7 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     niveis?: niveisOmit
     usuarios?: usuariosOmit
+    sorvetes?: sorvetesOmit
   }
 
   /* Types for Logging */
@@ -946,6 +1037,36 @@ export namespace Prisma {
    * Count Types
    */
 
+
+  /**
+   * Count Type NiveisCountOutputType
+   */
+
+  export type NiveisCountOutputType = {
+    usuarios: number
+  }
+
+  export type NiveisCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    usuarios?: boolean | NiveisCountOutputTypeCountUsuariosArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * NiveisCountOutputType without action
+   */
+  export type NiveisCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NiveisCountOutputType
+     */
+    select?: NiveisCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * NiveisCountOutputType without action
+   */
+  export type NiveisCountOutputTypeCountUsuariosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: usuariosWhereInput
+  }
 
 
   /**
@@ -1126,6 +1247,8 @@ export namespace Prisma {
   export type niveisSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     nome?: boolean
+    usuarios?: boolean | niveis$usuariosArgs<ExtArgs>
+    _count?: boolean | NiveisCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["niveis"]>
 
   export type niveisSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1144,10 +1267,18 @@ export namespace Prisma {
   }
 
   export type niveisOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nome", ExtArgs["result"]["niveis"]>
+  export type niveisInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    usuarios?: boolean | niveis$usuariosArgs<ExtArgs>
+    _count?: boolean | NiveisCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type niveisIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type niveisIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $niveisPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "niveis"
-    objects: {}
+    objects: {
+      usuarios: Prisma.$usuariosPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       nome: string
@@ -1545,6 +1676,7 @@ export namespace Prisma {
    */
   export interface Prisma__niveisClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    usuarios<T extends niveis$usuariosArgs<ExtArgs> = {}>(args?: Subset<T, niveis$usuariosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$usuariosPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1593,6 +1725,10 @@ export namespace Prisma {
      */
     omit?: niveisOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: niveisInclude<ExtArgs> | null
+    /**
      * Filter, which niveis to fetch.
      */
     where: niveisWhereUniqueInput
@@ -1611,6 +1747,10 @@ export namespace Prisma {
      */
     omit?: niveisOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: niveisInclude<ExtArgs> | null
+    /**
      * Filter, which niveis to fetch.
      */
     where: niveisWhereUniqueInput
@@ -1628,6 +1768,10 @@ export namespace Prisma {
      * Omit specific fields from the niveis
      */
     omit?: niveisOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: niveisInclude<ExtArgs> | null
     /**
      * Filter, which niveis to fetch.
      */
@@ -1677,6 +1821,10 @@ export namespace Prisma {
      */
     omit?: niveisOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: niveisInclude<ExtArgs> | null
+    /**
      * Filter, which niveis to fetch.
      */
     where?: niveisWhereInput
@@ -1725,6 +1873,10 @@ export namespace Prisma {
      */
     omit?: niveisOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: niveisInclude<ExtArgs> | null
+    /**
      * Filter, which niveis to fetch.
      */
     where?: niveisWhereInput
@@ -1767,6 +1919,10 @@ export namespace Prisma {
      * Omit specific fields from the niveis
      */
     omit?: niveisOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: niveisInclude<ExtArgs> | null
     /**
      * The data needed to create a niveis.
      */
@@ -1815,6 +1971,10 @@ export namespace Prisma {
      * Omit specific fields from the niveis
      */
     omit?: niveisOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: niveisInclude<ExtArgs> | null
     /**
      * The data needed to update a niveis.
      */
@@ -1882,6 +2042,10 @@ export namespace Prisma {
      */
     omit?: niveisOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: niveisInclude<ExtArgs> | null
+    /**
      * The filter to search for the niveis to update in case it exists.
      */
     where: niveisWhereUniqueInput
@@ -1908,6 +2072,10 @@ export namespace Prisma {
      */
     omit?: niveisOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: niveisInclude<ExtArgs> | null
+    /**
      * Filter which niveis to delete.
      */
     where: niveisWhereUniqueInput
@@ -1928,6 +2096,30 @@ export namespace Prisma {
   }
 
   /**
+   * niveis.usuarios
+   */
+  export type niveis$usuariosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the usuarios
+     */
+    select?: usuariosSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the usuarios
+     */
+    omit?: usuariosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: usuariosInclude<ExtArgs> | null
+    where?: usuariosWhereInput
+    orderBy?: usuariosOrderByWithRelationInput | usuariosOrderByWithRelationInput[]
+    cursor?: usuariosWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: UsuariosScalarFieldEnum | UsuariosScalarFieldEnum[]
+  }
+
+  /**
    * niveis without action
    */
   export type niveisDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1939,6 +2131,10 @@ export namespace Prisma {
      * Omit specific fields from the niveis
      */
     omit?: niveisOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: niveisInclude<ExtArgs> | null
   }
 
 
@@ -1956,10 +2152,12 @@ export namespace Prisma {
 
   export type UsuariosAvgAggregateOutputType = {
     id: number | null
+    nivel_id: number | null
   }
 
   export type UsuariosSumAggregateOutputType = {
     id: number | null
+    nivel_id: number | null
   }
 
   export type UsuariosMinAggregateOutputType = {
@@ -1967,6 +2165,7 @@ export namespace Prisma {
     nome: string | null
     email: string | null
     senha: string | null
+    nivel_id: number | null
   }
 
   export type UsuariosMaxAggregateOutputType = {
@@ -1974,6 +2173,7 @@ export namespace Prisma {
     nome: string | null
     email: string | null
     senha: string | null
+    nivel_id: number | null
   }
 
   export type UsuariosCountAggregateOutputType = {
@@ -1981,16 +2181,19 @@ export namespace Prisma {
     nome: number
     email: number
     senha: number
+    nivel_id: number
     _all: number
   }
 
 
   export type UsuariosAvgAggregateInputType = {
     id?: true
+    nivel_id?: true
   }
 
   export type UsuariosSumAggregateInputType = {
     id?: true
+    nivel_id?: true
   }
 
   export type UsuariosMinAggregateInputType = {
@@ -1998,6 +2201,7 @@ export namespace Prisma {
     nome?: true
     email?: true
     senha?: true
+    nivel_id?: true
   }
 
   export type UsuariosMaxAggregateInputType = {
@@ -2005,6 +2209,7 @@ export namespace Prisma {
     nome?: true
     email?: true
     senha?: true
+    nivel_id?: true
   }
 
   export type UsuariosCountAggregateInputType = {
@@ -2012,6 +2217,7 @@ export namespace Prisma {
     nome?: true
     email?: true
     senha?: true
+    nivel_id?: true
     _all?: true
   }
 
@@ -2106,6 +2312,7 @@ export namespace Prisma {
     nome: string
     email: string
     senha: string
+    nivel_id: number
     _count: UsuariosCountAggregateOutputType | null
     _avg: UsuariosAvgAggregateOutputType | null
     _sum: UsuariosSumAggregateOutputType | null
@@ -2132,6 +2339,8 @@ export namespace Prisma {
     nome?: boolean
     email?: boolean
     senha?: boolean
+    nivel_id?: boolean
+    niveis?: boolean | niveisDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["usuarios"]>
 
   export type usuariosSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2139,6 +2348,8 @@ export namespace Prisma {
     nome?: boolean
     email?: boolean
     senha?: boolean
+    nivel_id?: boolean
+    niveis?: boolean | niveisDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["usuarios"]>
 
   export type usuariosSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2146,6 +2357,8 @@ export namespace Prisma {
     nome?: boolean
     email?: boolean
     senha?: boolean
+    nivel_id?: boolean
+    niveis?: boolean | niveisDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["usuarios"]>
 
   export type usuariosSelectScalar = {
@@ -2153,18 +2366,31 @@ export namespace Prisma {
     nome?: boolean
     email?: boolean
     senha?: boolean
+    nivel_id?: boolean
   }
 
-  export type usuariosOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nome" | "email" | "senha", ExtArgs["result"]["usuarios"]>
+  export type usuariosOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nome" | "email" | "senha" | "nivel_id", ExtArgs["result"]["usuarios"]>
+  export type usuariosInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    niveis?: boolean | niveisDefaultArgs<ExtArgs>
+  }
+  export type usuariosIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    niveis?: boolean | niveisDefaultArgs<ExtArgs>
+  }
+  export type usuariosIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    niveis?: boolean | niveisDefaultArgs<ExtArgs>
+  }
 
   export type $usuariosPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "usuarios"
-    objects: {}
+    objects: {
+      niveis: Prisma.$niveisPayload<ExtArgs>
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       nome: string
       email: string
       senha: string
+      nivel_id: number
     }, ExtArgs["result"]["usuarios"]>
     composites: {}
   }
@@ -2559,6 +2785,7 @@ export namespace Prisma {
    */
   export interface Prisma__usuariosClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    niveis<T extends niveisDefaultArgs<ExtArgs> = {}>(args?: Subset<T, niveisDefaultArgs<ExtArgs>>): Prisma__niveisClient<$Result.GetResult<Prisma.$niveisPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2592,6 +2819,7 @@ export namespace Prisma {
     readonly nome: FieldRef<"usuarios", 'String'>
     readonly email: FieldRef<"usuarios", 'String'>
     readonly senha: FieldRef<"usuarios", 'String'>
+    readonly nivel_id: FieldRef<"usuarios", 'Int'>
   }
     
 
@@ -2608,6 +2836,10 @@ export namespace Prisma {
      * Omit specific fields from the usuarios
      */
     omit?: usuariosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: usuariosInclude<ExtArgs> | null
     /**
      * Filter, which usuarios to fetch.
      */
@@ -2627,6 +2859,10 @@ export namespace Prisma {
      */
     omit?: usuariosOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: usuariosInclude<ExtArgs> | null
+    /**
      * Filter, which usuarios to fetch.
      */
     where: usuariosWhereUniqueInput
@@ -2644,6 +2880,10 @@ export namespace Prisma {
      * Omit specific fields from the usuarios
      */
     omit?: usuariosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: usuariosInclude<ExtArgs> | null
     /**
      * Filter, which usuarios to fetch.
      */
@@ -2693,6 +2933,10 @@ export namespace Prisma {
      */
     omit?: usuariosOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: usuariosInclude<ExtArgs> | null
+    /**
      * Filter, which usuarios to fetch.
      */
     where?: usuariosWhereInput
@@ -2741,6 +2985,10 @@ export namespace Prisma {
      */
     omit?: usuariosOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: usuariosInclude<ExtArgs> | null
+    /**
      * Filter, which usuarios to fetch.
      */
     where?: usuariosWhereInput
@@ -2784,6 +3032,10 @@ export namespace Prisma {
      */
     omit?: usuariosOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: usuariosInclude<ExtArgs> | null
+    /**
      * The data needed to create a usuarios.
      */
     data: XOR<usuariosCreateInput, usuariosUncheckedCreateInput>
@@ -2817,6 +3069,10 @@ export namespace Prisma {
      */
     data: usuariosCreateManyInput | usuariosCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: usuariosIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -2831,6 +3087,10 @@ export namespace Prisma {
      * Omit specific fields from the usuarios
      */
     omit?: usuariosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: usuariosInclude<ExtArgs> | null
     /**
      * The data needed to update a usuarios.
      */
@@ -2883,6 +3143,10 @@ export namespace Prisma {
      * Limit how many usuarios to update.
      */
     limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: usuariosIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -2897,6 +3161,10 @@ export namespace Prisma {
      * Omit specific fields from the usuarios
      */
     omit?: usuariosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: usuariosInclude<ExtArgs> | null
     /**
      * The filter to search for the usuarios to update in case it exists.
      */
@@ -2923,6 +3191,10 @@ export namespace Prisma {
      * Omit specific fields from the usuarios
      */
     omit?: usuariosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: usuariosInclude<ExtArgs> | null
     /**
      * Filter which usuarios to delete.
      */
@@ -2955,6 +3227,1013 @@ export namespace Prisma {
      * Omit specific fields from the usuarios
      */
     omit?: usuariosOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: usuariosInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model sorvetes
+   */
+
+  export type AggregateSorvetes = {
+    _count: SorvetesCountAggregateOutputType | null
+    _avg: SorvetesAvgAggregateOutputType | null
+    _sum: SorvetesSumAggregateOutputType | null
+    _min: SorvetesMinAggregateOutputType | null
+    _max: SorvetesMaxAggregateOutputType | null
+  }
+
+  export type SorvetesAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type SorvetesSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type SorvetesMinAggregateOutputType = {
+    id: number | null
+    nome: string | null
+    status: string | null
+  }
+
+  export type SorvetesMaxAggregateOutputType = {
+    id: number | null
+    nome: string | null
+    status: string | null
+  }
+
+  export type SorvetesCountAggregateOutputType = {
+    id: number
+    nome: number
+    status: number
+    _all: number
+  }
+
+
+  export type SorvetesAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type SorvetesSumAggregateInputType = {
+    id?: true
+  }
+
+  export type SorvetesMinAggregateInputType = {
+    id?: true
+    nome?: true
+    status?: true
+  }
+
+  export type SorvetesMaxAggregateInputType = {
+    id?: true
+    nome?: true
+    status?: true
+  }
+
+  export type SorvetesCountAggregateInputType = {
+    id?: true
+    nome?: true
+    status?: true
+    _all?: true
+  }
+
+  export type SorvetesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which sorvetes to aggregate.
+     */
+    where?: sorvetesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of sorvetes to fetch.
+     */
+    orderBy?: sorvetesOrderByWithRelationInput | sorvetesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: sorvetesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` sorvetes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` sorvetes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned sorvetes
+    **/
+    _count?: true | SorvetesCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: SorvetesAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: SorvetesSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SorvetesMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SorvetesMaxAggregateInputType
+  }
+
+  export type GetSorvetesAggregateType<T extends SorvetesAggregateArgs> = {
+        [P in keyof T & keyof AggregateSorvetes]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSorvetes[P]>
+      : GetScalarType<T[P], AggregateSorvetes[P]>
+  }
+
+
+
+
+  export type sorvetesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: sorvetesWhereInput
+    orderBy?: sorvetesOrderByWithAggregationInput | sorvetesOrderByWithAggregationInput[]
+    by: SorvetesScalarFieldEnum[] | SorvetesScalarFieldEnum
+    having?: sorvetesScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SorvetesCountAggregateInputType | true
+    _avg?: SorvetesAvgAggregateInputType
+    _sum?: SorvetesSumAggregateInputType
+    _min?: SorvetesMinAggregateInputType
+    _max?: SorvetesMaxAggregateInputType
+  }
+
+  export type SorvetesGroupByOutputType = {
+    id: number
+    nome: string
+    status: string
+    _count: SorvetesCountAggregateOutputType | null
+    _avg: SorvetesAvgAggregateOutputType | null
+    _sum: SorvetesSumAggregateOutputType | null
+    _min: SorvetesMinAggregateOutputType | null
+    _max: SorvetesMaxAggregateOutputType | null
+  }
+
+  type GetSorvetesGroupByPayload<T extends sorvetesGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SorvetesGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SorvetesGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SorvetesGroupByOutputType[P]>
+            : GetScalarType<T[P], SorvetesGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type sorvetesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nome?: boolean
+    status?: boolean
+  }, ExtArgs["result"]["sorvetes"]>
+
+  export type sorvetesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nome?: boolean
+    status?: boolean
+  }, ExtArgs["result"]["sorvetes"]>
+
+  export type sorvetesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nome?: boolean
+    status?: boolean
+  }, ExtArgs["result"]["sorvetes"]>
+
+  export type sorvetesSelectScalar = {
+    id?: boolean
+    nome?: boolean
+    status?: boolean
+  }
+
+  export type sorvetesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nome" | "status", ExtArgs["result"]["sorvetes"]>
+
+  export type $sorvetesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "sorvetes"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      nome: string
+      status: string
+    }, ExtArgs["result"]["sorvetes"]>
+    composites: {}
+  }
+
+  type sorvetesGetPayload<S extends boolean | null | undefined | sorvetesDefaultArgs> = $Result.GetResult<Prisma.$sorvetesPayload, S>
+
+  type sorvetesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<sorvetesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SorvetesCountAggregateInputType | true
+    }
+
+  export interface sorvetesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['sorvetes'], meta: { name: 'sorvetes' } }
+    /**
+     * Find zero or one Sorvetes that matches the filter.
+     * @param {sorvetesFindUniqueArgs} args - Arguments to find a Sorvetes
+     * @example
+     * // Get one Sorvetes
+     * const sorvetes = await prisma.sorvetes.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends sorvetesFindUniqueArgs>(args: SelectSubset<T, sorvetesFindUniqueArgs<ExtArgs>>): Prisma__sorvetesClient<$Result.GetResult<Prisma.$sorvetesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Sorvetes that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {sorvetesFindUniqueOrThrowArgs} args - Arguments to find a Sorvetes
+     * @example
+     * // Get one Sorvetes
+     * const sorvetes = await prisma.sorvetes.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends sorvetesFindUniqueOrThrowArgs>(args: SelectSubset<T, sorvetesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__sorvetesClient<$Result.GetResult<Prisma.$sorvetesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Sorvetes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {sorvetesFindFirstArgs} args - Arguments to find a Sorvetes
+     * @example
+     * // Get one Sorvetes
+     * const sorvetes = await prisma.sorvetes.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends sorvetesFindFirstArgs>(args?: SelectSubset<T, sorvetesFindFirstArgs<ExtArgs>>): Prisma__sorvetesClient<$Result.GetResult<Prisma.$sorvetesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Sorvetes that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {sorvetesFindFirstOrThrowArgs} args - Arguments to find a Sorvetes
+     * @example
+     * // Get one Sorvetes
+     * const sorvetes = await prisma.sorvetes.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends sorvetesFindFirstOrThrowArgs>(args?: SelectSubset<T, sorvetesFindFirstOrThrowArgs<ExtArgs>>): Prisma__sorvetesClient<$Result.GetResult<Prisma.$sorvetesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Sorvetes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {sorvetesFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Sorvetes
+     * const sorvetes = await prisma.sorvetes.findMany()
+     * 
+     * // Get first 10 Sorvetes
+     * const sorvetes = await prisma.sorvetes.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const sorvetesWithIdOnly = await prisma.sorvetes.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends sorvetesFindManyArgs>(args?: SelectSubset<T, sorvetesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$sorvetesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Sorvetes.
+     * @param {sorvetesCreateArgs} args - Arguments to create a Sorvetes.
+     * @example
+     * // Create one Sorvetes
+     * const Sorvetes = await prisma.sorvetes.create({
+     *   data: {
+     *     // ... data to create a Sorvetes
+     *   }
+     * })
+     * 
+     */
+    create<T extends sorvetesCreateArgs>(args: SelectSubset<T, sorvetesCreateArgs<ExtArgs>>): Prisma__sorvetesClient<$Result.GetResult<Prisma.$sorvetesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Sorvetes.
+     * @param {sorvetesCreateManyArgs} args - Arguments to create many Sorvetes.
+     * @example
+     * // Create many Sorvetes
+     * const sorvetes = await prisma.sorvetes.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends sorvetesCreateManyArgs>(args?: SelectSubset<T, sorvetesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Sorvetes and returns the data saved in the database.
+     * @param {sorvetesCreateManyAndReturnArgs} args - Arguments to create many Sorvetes.
+     * @example
+     * // Create many Sorvetes
+     * const sorvetes = await prisma.sorvetes.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Sorvetes and only return the `id`
+     * const sorvetesWithIdOnly = await prisma.sorvetes.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends sorvetesCreateManyAndReturnArgs>(args?: SelectSubset<T, sorvetesCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$sorvetesPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Sorvetes.
+     * @param {sorvetesDeleteArgs} args - Arguments to delete one Sorvetes.
+     * @example
+     * // Delete one Sorvetes
+     * const Sorvetes = await prisma.sorvetes.delete({
+     *   where: {
+     *     // ... filter to delete one Sorvetes
+     *   }
+     * })
+     * 
+     */
+    delete<T extends sorvetesDeleteArgs>(args: SelectSubset<T, sorvetesDeleteArgs<ExtArgs>>): Prisma__sorvetesClient<$Result.GetResult<Prisma.$sorvetesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Sorvetes.
+     * @param {sorvetesUpdateArgs} args - Arguments to update one Sorvetes.
+     * @example
+     * // Update one Sorvetes
+     * const sorvetes = await prisma.sorvetes.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends sorvetesUpdateArgs>(args: SelectSubset<T, sorvetesUpdateArgs<ExtArgs>>): Prisma__sorvetesClient<$Result.GetResult<Prisma.$sorvetesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Sorvetes.
+     * @param {sorvetesDeleteManyArgs} args - Arguments to filter Sorvetes to delete.
+     * @example
+     * // Delete a few Sorvetes
+     * const { count } = await prisma.sorvetes.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends sorvetesDeleteManyArgs>(args?: SelectSubset<T, sorvetesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Sorvetes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {sorvetesUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Sorvetes
+     * const sorvetes = await prisma.sorvetes.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends sorvetesUpdateManyArgs>(args: SelectSubset<T, sorvetesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Sorvetes and returns the data updated in the database.
+     * @param {sorvetesUpdateManyAndReturnArgs} args - Arguments to update many Sorvetes.
+     * @example
+     * // Update many Sorvetes
+     * const sorvetes = await prisma.sorvetes.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Sorvetes and only return the `id`
+     * const sorvetesWithIdOnly = await prisma.sorvetes.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends sorvetesUpdateManyAndReturnArgs>(args: SelectSubset<T, sorvetesUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$sorvetesPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Sorvetes.
+     * @param {sorvetesUpsertArgs} args - Arguments to update or create a Sorvetes.
+     * @example
+     * // Update or create a Sorvetes
+     * const sorvetes = await prisma.sorvetes.upsert({
+     *   create: {
+     *     // ... data to create a Sorvetes
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Sorvetes we want to update
+     *   }
+     * })
+     */
+    upsert<T extends sorvetesUpsertArgs>(args: SelectSubset<T, sorvetesUpsertArgs<ExtArgs>>): Prisma__sorvetesClient<$Result.GetResult<Prisma.$sorvetesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Sorvetes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {sorvetesCountArgs} args - Arguments to filter Sorvetes to count.
+     * @example
+     * // Count the number of Sorvetes
+     * const count = await prisma.sorvetes.count({
+     *   where: {
+     *     // ... the filter for the Sorvetes we want to count
+     *   }
+     * })
+    **/
+    count<T extends sorvetesCountArgs>(
+      args?: Subset<T, sorvetesCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SorvetesCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Sorvetes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SorvetesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SorvetesAggregateArgs>(args: Subset<T, SorvetesAggregateArgs>): Prisma.PrismaPromise<GetSorvetesAggregateType<T>>
+
+    /**
+     * Group by Sorvetes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {sorvetesGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends sorvetesGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: sorvetesGroupByArgs['orderBy'] }
+        : { orderBy?: sorvetesGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, sorvetesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSorvetesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the sorvetes model
+   */
+  readonly fields: sorvetesFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for sorvetes.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__sorvetesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the sorvetes model
+   */
+  interface sorvetesFieldRefs {
+    readonly id: FieldRef<"sorvetes", 'Int'>
+    readonly nome: FieldRef<"sorvetes", 'String'>
+    readonly status: FieldRef<"sorvetes", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * sorvetes findUnique
+   */
+  export type sorvetesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sorvetes
+     */
+    select?: sorvetesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sorvetes
+     */
+    omit?: sorvetesOmit<ExtArgs> | null
+    /**
+     * Filter, which sorvetes to fetch.
+     */
+    where: sorvetesWhereUniqueInput
+  }
+
+  /**
+   * sorvetes findUniqueOrThrow
+   */
+  export type sorvetesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sorvetes
+     */
+    select?: sorvetesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sorvetes
+     */
+    omit?: sorvetesOmit<ExtArgs> | null
+    /**
+     * Filter, which sorvetes to fetch.
+     */
+    where: sorvetesWhereUniqueInput
+  }
+
+  /**
+   * sorvetes findFirst
+   */
+  export type sorvetesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sorvetes
+     */
+    select?: sorvetesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sorvetes
+     */
+    omit?: sorvetesOmit<ExtArgs> | null
+    /**
+     * Filter, which sorvetes to fetch.
+     */
+    where?: sorvetesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of sorvetes to fetch.
+     */
+    orderBy?: sorvetesOrderByWithRelationInput | sorvetesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for sorvetes.
+     */
+    cursor?: sorvetesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` sorvetes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` sorvetes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of sorvetes.
+     */
+    distinct?: SorvetesScalarFieldEnum | SorvetesScalarFieldEnum[]
+  }
+
+  /**
+   * sorvetes findFirstOrThrow
+   */
+  export type sorvetesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sorvetes
+     */
+    select?: sorvetesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sorvetes
+     */
+    omit?: sorvetesOmit<ExtArgs> | null
+    /**
+     * Filter, which sorvetes to fetch.
+     */
+    where?: sorvetesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of sorvetes to fetch.
+     */
+    orderBy?: sorvetesOrderByWithRelationInput | sorvetesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for sorvetes.
+     */
+    cursor?: sorvetesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` sorvetes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` sorvetes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of sorvetes.
+     */
+    distinct?: SorvetesScalarFieldEnum | SorvetesScalarFieldEnum[]
+  }
+
+  /**
+   * sorvetes findMany
+   */
+  export type sorvetesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sorvetes
+     */
+    select?: sorvetesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sorvetes
+     */
+    omit?: sorvetesOmit<ExtArgs> | null
+    /**
+     * Filter, which sorvetes to fetch.
+     */
+    where?: sorvetesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of sorvetes to fetch.
+     */
+    orderBy?: sorvetesOrderByWithRelationInput | sorvetesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing sorvetes.
+     */
+    cursor?: sorvetesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` sorvetes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` sorvetes.
+     */
+    skip?: number
+    distinct?: SorvetesScalarFieldEnum | SorvetesScalarFieldEnum[]
+  }
+
+  /**
+   * sorvetes create
+   */
+  export type sorvetesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sorvetes
+     */
+    select?: sorvetesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sorvetes
+     */
+    omit?: sorvetesOmit<ExtArgs> | null
+    /**
+     * The data needed to create a sorvetes.
+     */
+    data: XOR<sorvetesCreateInput, sorvetesUncheckedCreateInput>
+  }
+
+  /**
+   * sorvetes createMany
+   */
+  export type sorvetesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many sorvetes.
+     */
+    data: sorvetesCreateManyInput | sorvetesCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * sorvetes createManyAndReturn
+   */
+  export type sorvetesCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sorvetes
+     */
+    select?: sorvetesSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the sorvetes
+     */
+    omit?: sorvetesOmit<ExtArgs> | null
+    /**
+     * The data used to create many sorvetes.
+     */
+    data: sorvetesCreateManyInput | sorvetesCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * sorvetes update
+   */
+  export type sorvetesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sorvetes
+     */
+    select?: sorvetesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sorvetes
+     */
+    omit?: sorvetesOmit<ExtArgs> | null
+    /**
+     * The data needed to update a sorvetes.
+     */
+    data: XOR<sorvetesUpdateInput, sorvetesUncheckedUpdateInput>
+    /**
+     * Choose, which sorvetes to update.
+     */
+    where: sorvetesWhereUniqueInput
+  }
+
+  /**
+   * sorvetes updateMany
+   */
+  export type sorvetesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update sorvetes.
+     */
+    data: XOR<sorvetesUpdateManyMutationInput, sorvetesUncheckedUpdateManyInput>
+    /**
+     * Filter which sorvetes to update
+     */
+    where?: sorvetesWhereInput
+    /**
+     * Limit how many sorvetes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * sorvetes updateManyAndReturn
+   */
+  export type sorvetesUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sorvetes
+     */
+    select?: sorvetesSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the sorvetes
+     */
+    omit?: sorvetesOmit<ExtArgs> | null
+    /**
+     * The data used to update sorvetes.
+     */
+    data: XOR<sorvetesUpdateManyMutationInput, sorvetesUncheckedUpdateManyInput>
+    /**
+     * Filter which sorvetes to update
+     */
+    where?: sorvetesWhereInput
+    /**
+     * Limit how many sorvetes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * sorvetes upsert
+   */
+  export type sorvetesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sorvetes
+     */
+    select?: sorvetesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sorvetes
+     */
+    omit?: sorvetesOmit<ExtArgs> | null
+    /**
+     * The filter to search for the sorvetes to update in case it exists.
+     */
+    where: sorvetesWhereUniqueInput
+    /**
+     * In case the sorvetes found by the `where` argument doesn't exist, create a new sorvetes with this data.
+     */
+    create: XOR<sorvetesCreateInput, sorvetesUncheckedCreateInput>
+    /**
+     * In case the sorvetes was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<sorvetesUpdateInput, sorvetesUncheckedUpdateInput>
+  }
+
+  /**
+   * sorvetes delete
+   */
+  export type sorvetesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sorvetes
+     */
+    select?: sorvetesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sorvetes
+     */
+    omit?: sorvetesOmit<ExtArgs> | null
+    /**
+     * Filter which sorvetes to delete.
+     */
+    where: sorvetesWhereUniqueInput
+  }
+
+  /**
+   * sorvetes deleteMany
+   */
+  export type sorvetesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which sorvetes to delete
+     */
+    where?: sorvetesWhereInput
+    /**
+     * Limit how many sorvetes to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * sorvetes without action
+   */
+  export type sorvetesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the sorvetes
+     */
+    select?: sorvetesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the sorvetes
+     */
+    omit?: sorvetesOmit<ExtArgs> | null
   }
 
 
@@ -2984,10 +4263,20 @@ export namespace Prisma {
     id: 'id',
     nome: 'nome',
     email: 'email',
-    senha: 'senha'
+    senha: 'senha',
+    nivel_id: 'nivel_id'
   };
 
   export type UsuariosScalarFieldEnum = (typeof UsuariosScalarFieldEnum)[keyof typeof UsuariosScalarFieldEnum]
+
+
+  export const SorvetesScalarFieldEnum: {
+    id: 'id',
+    nome: 'nome',
+    status: 'status'
+  };
+
+  export type SorvetesScalarFieldEnum = (typeof SorvetesScalarFieldEnum)[keyof typeof SorvetesScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -3062,11 +4351,13 @@ export namespace Prisma {
     NOT?: niveisWhereInput | niveisWhereInput[]
     id?: IntFilter<"niveis"> | number
     nome?: StringFilter<"niveis"> | string
+    usuarios?: UsuariosListRelationFilter
   }
 
   export type niveisOrderByWithRelationInput = {
     id?: SortOrder
     nome?: SortOrder
+    usuarios?: usuariosOrderByRelationAggregateInput
   }
 
   export type niveisWhereUniqueInput = Prisma.AtLeast<{
@@ -3075,6 +4366,7 @@ export namespace Prisma {
     OR?: niveisWhereInput[]
     NOT?: niveisWhereInput | niveisWhereInput[]
     nome?: StringFilter<"niveis"> | string
+    usuarios?: UsuariosListRelationFilter
   }, "id">
 
   export type niveisOrderByWithAggregationInput = {
@@ -3103,6 +4395,8 @@ export namespace Prisma {
     nome?: StringFilter<"usuarios"> | string
     email?: StringFilter<"usuarios"> | string
     senha?: StringFilter<"usuarios"> | string
+    nivel_id?: IntFilter<"usuarios"> | number
+    niveis?: XOR<NiveisScalarRelationFilter, niveisWhereInput>
   }
 
   export type usuariosOrderByWithRelationInput = {
@@ -3110,6 +4404,8 @@ export namespace Prisma {
     nome?: SortOrder
     email?: SortOrder
     senha?: SortOrder
+    nivel_id?: SortOrder
+    niveis?: niveisOrderByWithRelationInput
   }
 
   export type usuariosWhereUniqueInput = Prisma.AtLeast<{
@@ -3120,6 +4416,8 @@ export namespace Prisma {
     nome?: StringFilter<"usuarios"> | string
     email?: StringFilter<"usuarios"> | string
     senha?: StringFilter<"usuarios"> | string
+    nivel_id?: IntFilter<"usuarios"> | number
+    niveis?: XOR<NiveisScalarRelationFilter, niveisWhereInput>
   }, "id">
 
   export type usuariosOrderByWithAggregationInput = {
@@ -3127,6 +4425,7 @@ export namespace Prisma {
     nome?: SortOrder
     email?: SortOrder
     senha?: SortOrder
+    nivel_id?: SortOrder
     _count?: usuariosCountOrderByAggregateInput
     _avg?: usuariosAvgOrderByAggregateInput
     _max?: usuariosMaxOrderByAggregateInput
@@ -3142,24 +4441,73 @@ export namespace Prisma {
     nome?: StringWithAggregatesFilter<"usuarios"> | string
     email?: StringWithAggregatesFilter<"usuarios"> | string
     senha?: StringWithAggregatesFilter<"usuarios"> | string
+    nivel_id?: IntWithAggregatesFilter<"usuarios"> | number
+  }
+
+  export type sorvetesWhereInput = {
+    AND?: sorvetesWhereInput | sorvetesWhereInput[]
+    OR?: sorvetesWhereInput[]
+    NOT?: sorvetesWhereInput | sorvetesWhereInput[]
+    id?: IntFilter<"sorvetes"> | number
+    nome?: StringFilter<"sorvetes"> | string
+    status?: StringFilter<"sorvetes"> | string
+  }
+
+  export type sorvetesOrderByWithRelationInput = {
+    id?: SortOrder
+    nome?: SortOrder
+    status?: SortOrder
+  }
+
+  export type sorvetesWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: sorvetesWhereInput | sorvetesWhereInput[]
+    OR?: sorvetesWhereInput[]
+    NOT?: sorvetesWhereInput | sorvetesWhereInput[]
+    nome?: StringFilter<"sorvetes"> | string
+    status?: StringFilter<"sorvetes"> | string
+  }, "id">
+
+  export type sorvetesOrderByWithAggregationInput = {
+    id?: SortOrder
+    nome?: SortOrder
+    status?: SortOrder
+    _count?: sorvetesCountOrderByAggregateInput
+    _avg?: sorvetesAvgOrderByAggregateInput
+    _max?: sorvetesMaxOrderByAggregateInput
+    _min?: sorvetesMinOrderByAggregateInput
+    _sum?: sorvetesSumOrderByAggregateInput
+  }
+
+  export type sorvetesScalarWhereWithAggregatesInput = {
+    AND?: sorvetesScalarWhereWithAggregatesInput | sorvetesScalarWhereWithAggregatesInput[]
+    OR?: sorvetesScalarWhereWithAggregatesInput[]
+    NOT?: sorvetesScalarWhereWithAggregatesInput | sorvetesScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"sorvetes"> | number
+    nome?: StringWithAggregatesFilter<"sorvetes"> | string
+    status?: StringWithAggregatesFilter<"sorvetes"> | string
   }
 
   export type niveisCreateInput = {
     nome: string
+    usuarios?: usuariosCreateNestedManyWithoutNiveisInput
   }
 
   export type niveisUncheckedCreateInput = {
     id?: number
     nome: string
+    usuarios?: usuariosUncheckedCreateNestedManyWithoutNiveisInput
   }
 
   export type niveisUpdateInput = {
     nome?: StringFieldUpdateOperationsInput | string
+    usuarios?: usuariosUpdateManyWithoutNiveisNestedInput
   }
 
   export type niveisUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     nome?: StringFieldUpdateOperationsInput | string
+    usuarios?: usuariosUncheckedUpdateManyWithoutNiveisNestedInput
   }
 
   export type niveisCreateManyInput = {
@@ -3180,6 +4528,7 @@ export namespace Prisma {
     nome: string
     email: string
     senha: string
+    niveis: niveisCreateNestedOneWithoutUsuariosInput
   }
 
   export type usuariosUncheckedCreateInput = {
@@ -3187,12 +4536,14 @@ export namespace Prisma {
     nome: string
     email: string
     senha: string
+    nivel_id: number
   }
 
   export type usuariosUpdateInput = {
     nome?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     senha?: StringFieldUpdateOperationsInput | string
+    niveis?: niveisUpdateOneRequiredWithoutUsuariosNestedInput
   }
 
   export type usuariosUncheckedUpdateInput = {
@@ -3200,6 +4551,7 @@ export namespace Prisma {
     nome?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     senha?: StringFieldUpdateOperationsInput | string
+    nivel_id?: IntFieldUpdateOperationsInput | number
   }
 
   export type usuariosCreateManyInput = {
@@ -3207,6 +4559,7 @@ export namespace Prisma {
     nome: string
     email: string
     senha: string
+    nivel_id: number
   }
 
   export type usuariosUpdateManyMutationInput = {
@@ -3220,6 +4573,46 @@ export namespace Prisma {
     nome?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     senha?: StringFieldUpdateOperationsInput | string
+    nivel_id?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type sorvetesCreateInput = {
+    nome: string
+    status: string
+  }
+
+  export type sorvetesUncheckedCreateInput = {
+    id?: number
+    nome: string
+    status: string
+  }
+
+  export type sorvetesUpdateInput = {
+    nome?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type sorvetesUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nome?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type sorvetesCreateManyInput = {
+    id?: number
+    nome: string
+    status: string
+  }
+
+  export type sorvetesUpdateManyMutationInput = {
+    nome?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type sorvetesUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nome?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -3246,6 +4639,16 @@ export namespace Prisma {
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     mode?: QueryMode
     not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type UsuariosListRelationFilter = {
+    every?: usuariosWhereInput
+    some?: usuariosWhereInput
+    none?: usuariosWhereInput
+  }
+
+  export type usuariosOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type niveisCountOrderByAggregateInput = {
@@ -3305,15 +4708,22 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
+  export type NiveisScalarRelationFilter = {
+    is?: niveisWhereInput
+    isNot?: niveisWhereInput
+  }
+
   export type usuariosCountOrderByAggregateInput = {
     id?: SortOrder
     nome?: SortOrder
     email?: SortOrder
     senha?: SortOrder
+    nivel_id?: SortOrder
   }
 
   export type usuariosAvgOrderByAggregateInput = {
     id?: SortOrder
+    nivel_id?: SortOrder
   }
 
   export type usuariosMaxOrderByAggregateInput = {
@@ -3321,6 +4731,7 @@ export namespace Prisma {
     nome?: SortOrder
     email?: SortOrder
     senha?: SortOrder
+    nivel_id?: SortOrder
   }
 
   export type usuariosMinOrderByAggregateInput = {
@@ -3328,14 +4739,70 @@ export namespace Prisma {
     nome?: SortOrder
     email?: SortOrder
     senha?: SortOrder
+    nivel_id?: SortOrder
   }
 
   export type usuariosSumOrderByAggregateInput = {
     id?: SortOrder
+    nivel_id?: SortOrder
+  }
+
+  export type sorvetesCountOrderByAggregateInput = {
+    id?: SortOrder
+    nome?: SortOrder
+    status?: SortOrder
+  }
+
+  export type sorvetesAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type sorvetesMaxOrderByAggregateInput = {
+    id?: SortOrder
+    nome?: SortOrder
+    status?: SortOrder
+  }
+
+  export type sorvetesMinOrderByAggregateInput = {
+    id?: SortOrder
+    nome?: SortOrder
+    status?: SortOrder
+  }
+
+  export type sorvetesSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type usuariosCreateNestedManyWithoutNiveisInput = {
+    create?: XOR<usuariosCreateWithoutNiveisInput, usuariosUncheckedCreateWithoutNiveisInput> | usuariosCreateWithoutNiveisInput[] | usuariosUncheckedCreateWithoutNiveisInput[]
+    connectOrCreate?: usuariosCreateOrConnectWithoutNiveisInput | usuariosCreateOrConnectWithoutNiveisInput[]
+    createMany?: usuariosCreateManyNiveisInputEnvelope
+    connect?: usuariosWhereUniqueInput | usuariosWhereUniqueInput[]
+  }
+
+  export type usuariosUncheckedCreateNestedManyWithoutNiveisInput = {
+    create?: XOR<usuariosCreateWithoutNiveisInput, usuariosUncheckedCreateWithoutNiveisInput> | usuariosCreateWithoutNiveisInput[] | usuariosUncheckedCreateWithoutNiveisInput[]
+    connectOrCreate?: usuariosCreateOrConnectWithoutNiveisInput | usuariosCreateOrConnectWithoutNiveisInput[]
+    createMany?: usuariosCreateManyNiveisInputEnvelope
+    connect?: usuariosWhereUniqueInput | usuariosWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
     set?: string
+  }
+
+  export type usuariosUpdateManyWithoutNiveisNestedInput = {
+    create?: XOR<usuariosCreateWithoutNiveisInput, usuariosUncheckedCreateWithoutNiveisInput> | usuariosCreateWithoutNiveisInput[] | usuariosUncheckedCreateWithoutNiveisInput[]
+    connectOrCreate?: usuariosCreateOrConnectWithoutNiveisInput | usuariosCreateOrConnectWithoutNiveisInput[]
+    upsert?: usuariosUpsertWithWhereUniqueWithoutNiveisInput | usuariosUpsertWithWhereUniqueWithoutNiveisInput[]
+    createMany?: usuariosCreateManyNiveisInputEnvelope
+    set?: usuariosWhereUniqueInput | usuariosWhereUniqueInput[]
+    disconnect?: usuariosWhereUniqueInput | usuariosWhereUniqueInput[]
+    delete?: usuariosWhereUniqueInput | usuariosWhereUniqueInput[]
+    connect?: usuariosWhereUniqueInput | usuariosWhereUniqueInput[]
+    update?: usuariosUpdateWithWhereUniqueWithoutNiveisInput | usuariosUpdateWithWhereUniqueWithoutNiveisInput[]
+    updateMany?: usuariosUpdateManyWithWhereWithoutNiveisInput | usuariosUpdateManyWithWhereWithoutNiveisInput[]
+    deleteMany?: usuariosScalarWhereInput | usuariosScalarWhereInput[]
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -3344,6 +4811,34 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type usuariosUncheckedUpdateManyWithoutNiveisNestedInput = {
+    create?: XOR<usuariosCreateWithoutNiveisInput, usuariosUncheckedCreateWithoutNiveisInput> | usuariosCreateWithoutNiveisInput[] | usuariosUncheckedCreateWithoutNiveisInput[]
+    connectOrCreate?: usuariosCreateOrConnectWithoutNiveisInput | usuariosCreateOrConnectWithoutNiveisInput[]
+    upsert?: usuariosUpsertWithWhereUniqueWithoutNiveisInput | usuariosUpsertWithWhereUniqueWithoutNiveisInput[]
+    createMany?: usuariosCreateManyNiveisInputEnvelope
+    set?: usuariosWhereUniqueInput | usuariosWhereUniqueInput[]
+    disconnect?: usuariosWhereUniqueInput | usuariosWhereUniqueInput[]
+    delete?: usuariosWhereUniqueInput | usuariosWhereUniqueInput[]
+    connect?: usuariosWhereUniqueInput | usuariosWhereUniqueInput[]
+    update?: usuariosUpdateWithWhereUniqueWithoutNiveisInput | usuariosUpdateWithWhereUniqueWithoutNiveisInput[]
+    updateMany?: usuariosUpdateManyWithWhereWithoutNiveisInput | usuariosUpdateManyWithWhereWithoutNiveisInput[]
+    deleteMany?: usuariosScalarWhereInput | usuariosScalarWhereInput[]
+  }
+
+  export type niveisCreateNestedOneWithoutUsuariosInput = {
+    create?: XOR<niveisCreateWithoutUsuariosInput, niveisUncheckedCreateWithoutUsuariosInput>
+    connectOrCreate?: niveisCreateOrConnectWithoutUsuariosInput
+    connect?: niveisWhereUniqueInput
+  }
+
+  export type niveisUpdateOneRequiredWithoutUsuariosNestedInput = {
+    create?: XOR<niveisCreateWithoutUsuariosInput, niveisUncheckedCreateWithoutUsuariosInput>
+    connectOrCreate?: niveisCreateOrConnectWithoutUsuariosInput
+    upsert?: niveisUpsertWithoutUsuariosInput
+    connect?: niveisWhereUniqueInput
+    update?: XOR<XOR<niveisUpdateToOneWithWhereWithoutUsuariosInput, niveisUpdateWithoutUsuariosInput>, niveisUncheckedUpdateWithoutUsuariosInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -3413,6 +4908,117 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type usuariosCreateWithoutNiveisInput = {
+    nome: string
+    email: string
+    senha: string
+  }
+
+  export type usuariosUncheckedCreateWithoutNiveisInput = {
+    id?: number
+    nome: string
+    email: string
+    senha: string
+  }
+
+  export type usuariosCreateOrConnectWithoutNiveisInput = {
+    where: usuariosWhereUniqueInput
+    create: XOR<usuariosCreateWithoutNiveisInput, usuariosUncheckedCreateWithoutNiveisInput>
+  }
+
+  export type usuariosCreateManyNiveisInputEnvelope = {
+    data: usuariosCreateManyNiveisInput | usuariosCreateManyNiveisInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type usuariosUpsertWithWhereUniqueWithoutNiveisInput = {
+    where: usuariosWhereUniqueInput
+    update: XOR<usuariosUpdateWithoutNiveisInput, usuariosUncheckedUpdateWithoutNiveisInput>
+    create: XOR<usuariosCreateWithoutNiveisInput, usuariosUncheckedCreateWithoutNiveisInput>
+  }
+
+  export type usuariosUpdateWithWhereUniqueWithoutNiveisInput = {
+    where: usuariosWhereUniqueInput
+    data: XOR<usuariosUpdateWithoutNiveisInput, usuariosUncheckedUpdateWithoutNiveisInput>
+  }
+
+  export type usuariosUpdateManyWithWhereWithoutNiveisInput = {
+    where: usuariosScalarWhereInput
+    data: XOR<usuariosUpdateManyMutationInput, usuariosUncheckedUpdateManyWithoutNiveisInput>
+  }
+
+  export type usuariosScalarWhereInput = {
+    AND?: usuariosScalarWhereInput | usuariosScalarWhereInput[]
+    OR?: usuariosScalarWhereInput[]
+    NOT?: usuariosScalarWhereInput | usuariosScalarWhereInput[]
+    id?: IntFilter<"usuarios"> | number
+    nome?: StringFilter<"usuarios"> | string
+    email?: StringFilter<"usuarios"> | string
+    senha?: StringFilter<"usuarios"> | string
+    nivel_id?: IntFilter<"usuarios"> | number
+  }
+
+  export type niveisCreateWithoutUsuariosInput = {
+    nome: string
+  }
+
+  export type niveisUncheckedCreateWithoutUsuariosInput = {
+    id?: number
+    nome: string
+  }
+
+  export type niveisCreateOrConnectWithoutUsuariosInput = {
+    where: niveisWhereUniqueInput
+    create: XOR<niveisCreateWithoutUsuariosInput, niveisUncheckedCreateWithoutUsuariosInput>
+  }
+
+  export type niveisUpsertWithoutUsuariosInput = {
+    update: XOR<niveisUpdateWithoutUsuariosInput, niveisUncheckedUpdateWithoutUsuariosInput>
+    create: XOR<niveisCreateWithoutUsuariosInput, niveisUncheckedCreateWithoutUsuariosInput>
+    where?: niveisWhereInput
+  }
+
+  export type niveisUpdateToOneWithWhereWithoutUsuariosInput = {
+    where?: niveisWhereInput
+    data: XOR<niveisUpdateWithoutUsuariosInput, niveisUncheckedUpdateWithoutUsuariosInput>
+  }
+
+  export type niveisUpdateWithoutUsuariosInput = {
+    nome?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type niveisUncheckedUpdateWithoutUsuariosInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nome?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type usuariosCreateManyNiveisInput = {
+    id?: number
+    nome: string
+    email: string
+    senha: string
+  }
+
+  export type usuariosUpdateWithoutNiveisInput = {
+    nome?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    senha?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type usuariosUncheckedUpdateWithoutNiveisInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nome?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    senha?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type usuariosUncheckedUpdateManyWithoutNiveisInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nome?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    senha?: StringFieldUpdateOperationsInput | string
   }
 
 

@@ -5,17 +5,25 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url = env("DATABASE_URL")
+  url      = env("DATABASE_URL")
 }
 
 model niveis {
-  id   Int    @id @default(autoincrement())
-  nome String @db.VarChar(30)
+  id       Int        @id @default(autoincrement())
+  nome     String     @db.VarChar(30)
+  usuarios usuarios[]
 }
 
 model usuarios {
-  id    Int    @id @default(autoincrement())
-  nome  String @db.VarChar(50)
-  email String @db.VarChar(50)
-  senha String @db.VarChar(255)
+  id       Int    @id @default(autoincrement())
+  nome     String @db.VarChar(50)
+  email    String @db.VarChar(50)
+  senha    String @db.VarChar(255)
+  nivel_id Int
+  niveis   niveis @relation(fields: [nivel_id], references: [id], onUpdate: NoAction, map: "fk_u_n")
+}
+model sorvetes {
+  id Int @id @default(autoincrement())
+  nome String @db.VarChar(30)
+  status String @db.VarChar(30)
 }

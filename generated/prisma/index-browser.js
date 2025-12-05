@@ -130,7 +130,14 @@ exports.Prisma.UsuariosScalarFieldEnum = {
   id: 'id',
   nome: 'nome',
   email: 'email',
-  senha: 'senha'
+  senha: 'senha',
+  nivel_id: 'nivel_id'
+};
+
+exports.Prisma.SorvetesScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  status: 'status'
 };
 
 exports.Prisma.SortOrder = {
@@ -146,7 +153,8 @@ exports.Prisma.QueryMode = {
 
 exports.Prisma.ModelName = {
   niveis: 'niveis',
-  usuarios: 'usuarios'
+  usuarios: 'usuarios',
+  sorvetes: 'sorvetes'
 };
 
 /**
