@@ -6,8 +6,9 @@ import { rotaProtegida } from "./src/utils/index.js";
 import swaggerUi from "swagger-ui-express";
 import swaggerDoc from "./src/docs/documentation.json" with {type: "json"}
 import sorvetesRoutes from "./src/routes/sorvetesRoutes.js"
+import cors from "cors"
 const app = express();
-
+app.use(cors())
 app.use(express.json())
 
 app.get('/', (req, res) => {
