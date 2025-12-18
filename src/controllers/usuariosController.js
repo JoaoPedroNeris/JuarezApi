@@ -44,10 +44,13 @@ async function criar(dados) {
 }
 async function editar(dados, id) {
     try {
-        const senhaCripto = await bcrypt.hash(dados.senha, 10);
+        if (dados.senha){
+            const senhaCripto = await bcrypt.hash(dados.senha, 10);
+            dados = {...dados, senha: senhaCripto}
+        }
         const request = await prisma.usuarios.update(
             {
-                data:  {...dados, senha: senhaCripto},
+                data: dados,
                 where: {
                     id: Number(id)
                 }
