@@ -5,6 +5,7 @@ import { rotaProtegida } from "../utils/index.js";
 const router = express.Router();
 
 router.get("/", async (req, res) => {
+    const {status} = req.query
     // #swagger.description = "Busca todos os sorvetes"
     /* #swagger.responses[200] = {
             description: 'Retorna lista de sorvetes',
@@ -14,7 +15,7 @@ router.get("/", async (req, res) => {
                 status: "texto"
             }]
     } */
-    res.json(await buscar());
+    res.json(await buscar(status));
 });
 
 router.post("/", rotaProtegida, async (req, res) => {// #swagger.description = "Cria um sorvetes"

@@ -1,8 +1,10 @@
 import { prisma } from "../utils/index.js";
 
-async function buscar() {
+async function buscar(status) {
     try {
-        return await prisma.sorvetes.findMany();
+        return await prisma.sorvetes.findMany({
+            where: status ? { status } : undefined
+        });
     } catch (error) {
         return {
             tipo: 'error',
