@@ -52,7 +52,7 @@ app.use("/niveis", rotaProtegida,
                 description: 'Token invalido.',
             }
     } */ niveisRoutes);
-     app.use("/sorvetes", rotaProtegida,
+     app.use("/sorvetes",
     // #swagger.description = "Acesso não autorizado"
     /* #swagger.responses[401] = {
             description: 'Resposta',

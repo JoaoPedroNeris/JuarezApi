@@ -1,5 +1,6 @@
 import express from "express"
 import { buscar, criar, deletar, editar } from "../controllers/sorvetesController.js";
+import { rotaProtegida } from "../utils/index.js";
 
 const router = express.Router();
 
@@ -16,7 +17,7 @@ router.get("/", async (req, res) => {
     res.json(await buscar());
 });
 
-router.post("/", async (req, res) => {// #swagger.description = "Cria um sorvetes"
+router.post("/", rotaProtegida, async (req, res) => {// #swagger.description = "Cria um sorvetes"
     /* #swagger.parameters['obj'] = {
             in: 'body',
             schema: {
@@ -33,7 +34,7 @@ router.post("/", async (req, res) => {// #swagger.description = "Cria um sorvete
     } */
     res.json(await criar(req.body));
 })
-router.put("/:id", async (req, res) => {// #swagger.description = "Edita um nível"
+router.put("/:id", rotaProtegida, async (req, res) => {// #swagger.description = "Edita um nível"
     /* #swagger.parameters['obj'] = {
             in: 'body',
             schema: {
@@ -51,7 +52,7 @@ router.put("/:id", async (req, res) => {// #swagger.description = "Edita um nív
     res.json(await editar(req.body, req.params.id));
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", rotaProtegida, async (req, res) => {
     // #swagger.description = "Deleta um nível"
     /* #swagger.responses[200] = {
             description: 'Resposta',
